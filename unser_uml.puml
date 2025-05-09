@@ -1,0 +1,64 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Studierende" as Student
+
+package "Lernen & Prüfungsorganisation" {
+
+    usecase "Lernen" as lernen
+    usecase "Prüfungstermine verwalten" as pruefungstermine_verwalten
+    usecase "Lernmaterial verwalten" as lernmaterial_verwalten
+    usecase "Lernplan konfigurieren" as lernplan_konfigurieren
+    usecase "Lernfortschritt anzeigen" as lernfortschritt
+    usecase "Tagesplan verwalten" as tagesplan
+    usecase "Karteikarten verwalten" as karteikarten
+    usecase "Lernplan zugreifen" as lernplan_zugriff
+    usecase "Lernplan generieren" as lernplan_generieren
+    usecase "Engpasserkennung" as engpasserkennung
+    
+}
+
+Student --> lernen
+Student --> pruefungstermine_verwalten
+Student --> lernmaterial_verwalten
+Student --> lernplan_konfigurieren
+Student --> lernfortschritt
+Student --> tagesplan
+Student --> karteikarten
+Student --> lernplan_zugriff
+Student --> engpasserkennung
+
+
+
+lernen --> lernplan_generieren : <<include>>
+lernen --> tagesplan : <<include>>
+
+lernplan_generieren --> lernmaterial_verwalten : <<include>>
+lernplan_generieren --> pruefungstermine_verwalten : <<include>>
+
+lernplan_konfigurieren --> lernplan_generieren : <<include>>
+
+engpasserkennung --> lernplan_generieren : <<include>>
+
+tagesplan --> lernplan_generieren : <<include>>
+
+lernplan_zugriff --> lernplan_generieren : <<include>>
+
+lernfortschritt --> lernplan_generieren : <<include>>
+
+
+
+/'
+Prüfungstermine verwalten: Grundlage der software	
+Lernmaterial verwalten: Funktion nicht notwendig	
+Lernplan erstellen: Grundlage der software	
+Lernfortschritt anzeigen: Nicht notwendig für Kernfuktion	
+Tagesplan verwalten: Lernfortschritt eintragen notwendig	
+Karteikarten verwalten: nice to have 	
+Lernplan zugreifen: abhängigkeit nicht gegeben	
+Lernplan generieren: notwendig für Lernfortschritt	
+Engpasserkennung und Wiederholungsvorschläge: halt dich an lernplan	
+'/
+
+@enduml
