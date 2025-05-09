@@ -1,0 +1,22 @@
+@startuml
+
+' Number each step
+autonumber
+' Hide lower actor boxes
+hide footbox
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+
+participant "Box A" as A
+participant "Box B" as B
+participant "Box C" as C
+
+A -> B: Something
+B -> C: More
+C -> B: Return more
+B -> A: Return something
+
+@enduml
+
