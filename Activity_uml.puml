@@ -4,14 +4,33 @@
 skinparam monochrome true
 ' Disable shadows
 skinparam shadowing false
-
+|MyStudium App|
+|User|
 start
 :App öffnen;
-:Action 2;
-while(Parse result) is (success)
-endwhile(failure)
+:Prüfungsplan verwalten;
+if (eingetragene Prüfungen existieren) then (ja)
+    |MyStudium App|
+    :existierende Prüfungen anzeigen;
+    
+else (nein)
+    label eintragen
+endif
+|User|
+goto eintragen
+while(uneingetragene Prüfungen existieren) is (ja)
+    :Prüfung hinzufügen;
+    :Datum auswählen;
+    :Name eingeben;
+    :Auf akzeptieren klicken;
+    |MyStudium App|
+    :existierende Prüfungen anzeigen;
+endwhile(nein)
+|User|
+:Speichern klicken;
+|MyStudium App|
+:Prüfungen speichern;
 stop
-
 
 
 
