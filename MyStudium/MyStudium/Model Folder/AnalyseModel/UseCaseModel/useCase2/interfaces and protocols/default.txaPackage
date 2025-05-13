@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-yrgd8elp48qp2kddkgwc">
+		<property name="$metaclass" value="SD20_Interaction"/>
+		<property name="$name" value="sysopsWF2"/>
+		<node uin="-y8nsowlp48ra3lsmfk63">
+			<property name="$metaclass" value="SD20_Lifeline"/>
+			<property name="$name" value="Lifeline2"/>
+			<property name="connectableElementName" value="actor"/>
+			<node uin="c87hzvlp48src2-pq9gki">
+				<property name="$metaclass" value="SD20_ExecutionSpecification"/>
+				<property name="$name" value="SD20_ExecutionSpecification1"/>
+			</node>
+			<link uin="ieje0rlp48sntf-mg0rt2">
+				<property name="$metaclass" value="SD20_Lifeline_LinkToConnectableElement"/>
+				<participant referencedUin="design:node:::-y8nsowlp48ra3lsmfk63:-yrgd8elp48qp2kddkgwc" role="Client"></participant>
+				<participant referencedUin="design:node:::8bho0jlp48eekhristz3" role="Supplier"></participant>
+			</link>
+		</node>
+		<node uin="-y8nsowlp48r8i2-lz5ifc">
+			<property name="$metaclass" value="SD20_Lifeline"/>
+			<property name="$name" value="Lifeline1"/>
+			<property name="connectableElementName" value="sys"/>
+			<link uin="ieje0rlp48rtlweff9y6">
+				<property name="$metaclass" value="SD20_Lifeline_LinkToConnectableElement"/>
+				<participant referencedUin="design:node:::-y8nsowlp48r8i2-lz5ifc:-yrgd8elp48qp2kddkgwc" role="Client"></participant>
+				<participant referencedUin="design:node:::8krugmlp48e9s1-2krj8n" role="Supplier"></participant>
+			</link>
+		</node>
+		<node uin="l2gqtvlp48src2m2aqt8">
+			<property name="$metaclass" value="SD20_Int_InvocationSpecification"/>
+			<property name="$name" value="SD20_Int_InvocationSpecification1"/>
+			<property name="receiveExecutionSpecificationPuin" value="design:node:::c87hzvlp48src2-pq9gki:-y8nsowlp48ra3lsmfk63:-yrgd8elp48qp2kddkgwc"/>
+			<property name="call_cachedSequenceNumber" value="1"/>
+		</node>
+	</node>
+	<node uin="1g64ylp48t4w2-741ep6">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Falls weitere Akteure an diesem Use Case beteiligt sind, fügen Sie bitte entsprechende Lifelines hinzu."/>
+	</node>
+</nodeSet>

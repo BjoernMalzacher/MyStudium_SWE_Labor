@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V-b8dyjilp48nitk-ookbct">
+		<property name="$metaclass" value="ActivityDiagram20"/>
+		<property name="$name" value="workflow1"/>
+		<reference referencedUin="design:node:::-46k66rlp48p22yqc1zfj">
+			<property name="bounds" value="60,95,375,286"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="row_children" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+			<reference referencedUin="design:node:::a6k48rlp48pf35329khv:-46k66rlp48p22yqc1zfj">
+				<property name="bounds" value="24,0,100,262"/>
+				<property name="location_set_by_user" value="true"/>
+				<property name="$orientation" value="vertical"/>
+				<property name="row_children" value="true"/>
+			</reference>
+			<reference referencedUin="design:node:::a6k48rlp48pk8y-2lg9v9:-46k66rlp48p22yqc1zfj">
+				<property name="bounds" value="217,0,100,262"/>
+				<property name="location_set_by_user" value="true"/>
+				<property name="$orientation" value="vertical"/>
+			</reference>
+		</reference>
+		<reference referencedUin="design:node:::1g64ylp48q2ln4k67fv">
+			<property name="bounds" value="480,160,162,106"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

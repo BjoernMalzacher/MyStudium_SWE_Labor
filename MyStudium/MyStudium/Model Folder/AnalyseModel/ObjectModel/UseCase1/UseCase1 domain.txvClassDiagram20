@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhlp48bbda-66cqwc">
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="$name" value="UseCase1 domain"/>
+		<property name="__options" value="classifier_view=true"/>
+		<reference referencedUin="design:node:::-amcqg9lp48c10hdtqye6">
+			<property name="bounds" value="75,55,80,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="label:$name:design:node:::-amcqg9lp48c10hdtqye6">
+				<property name="bounds" value="5,30,10,15"/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

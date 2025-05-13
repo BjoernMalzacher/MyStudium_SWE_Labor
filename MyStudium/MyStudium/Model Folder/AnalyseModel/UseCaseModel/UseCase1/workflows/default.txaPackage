@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-46k66rlp48p22yqc1zfj">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="UseCase1 Aspect1"/>
+		<node uin="a6k48rlp48pf35329khv">
+			<property name="$metaclass" value="ActivityPartition"/>
+			<property name="$name" value="Actor"/>
+		</node>
+		<node uin="a6k48rlp48pk8y-2lg9v9">
+			<property name="$metaclass" value="ActivityPartition"/>
+			<property name="$name" value="System"/>
+		</node>
+	</node>
+	<node uin="1g64ylp48q2ln4k67fv">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Falls Sie weitere Akteure benötigen, fügen Sie bitte entsprechende Swimlanes (Activity Partition) hinzu."/>
+	</node>
+</nodeSet>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="Vam8ynklp48qp2kjewp2o">
+		<property name="$metaclass" value="SequenceDiagram20"/>
+		<property name="$referencedInteractionUin" value="design:node:::-yrgd8elp48qp2kddkgwc"/>
+		<property name="__options" value="option.nlayout.recursive=true"/>
+		<property name="$name" value="sysopsWF2"/>
+		<reference referencedUin="design:node:::-yrgd8elp48qp2kddkgwc">
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds" value="5,5,491,431"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+			<reference referencedUin="design:node:::-y8nsowlp48ra3lsmfk63:-yrgd8elp48qp2kddkgwc">
+				<property name="bounds" value="65,5,68,303"/>
+				<property name="location_set_by_user" value="true"/>
+				<reference referencedUin="design:node:::c87hzvlp48src2-pq9gki:-y8nsowlp48ra3lsmfk63:-yrgd8elp48qp2kddkgwc">
+					<property name="bounds" value="24,23,20,181"/>
+					<property name="location_set_by_user" value="true"/>
+					<property name="bounds_setted_by_user" value="true"/>
+				</reference>
+			</reference>
+			<reference referencedUin="design:node:::-y8nsowlp48r8i2-lz5ifc:-yrgd8elp48qp2kddkgwc">
+				<property name="bounds" value="305,5,66,303"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="design:node:::l2gqtvlp48src2m2aqt8:-yrgd8elp48qp2kddkgwc">
+				<property name="bounds" value="21,80,16,16"/>
+				<reference referencedUin="sd20_message_container:design:node:::l2gqtvlp48src2m2aqt8:-yrgd8elp48qp2kddkgwc">
+					<reference referencedUin="sd20_message|1|call|58(design:node:::l2gqtvlp48src2m2aqt8:-yrgd8elp48qp2kddkgwc)">
+						<property name="sourceAnchor" value="44,120"/>
+						<property name="targetAnchor" value="104,120"/>
+					</reference>
+				</reference>
+			</reference>
+		</reference>
+		<reference referencedUin="design:node:::1g64ylp48t4w2-741ep6">
+			<property name="bounds" value="595,115,221,81"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+		</reference>
+	</view>
+	<link uin="ieje0rlp48qp2k-n2jz6z">
+		<property name="$metaclass" value="SequenceDiagram20_LinkToInteraction"/>
+		<participant referencedUin="design:view:::Vam8ynklp48qp2kjewp2o" role="Client"></participant>
+		<participant referencedUin="design:node:::-yrgd8elp48qp2kddkgwc" role="Supplier"></participant>
+	</link>
+</nodeSet>

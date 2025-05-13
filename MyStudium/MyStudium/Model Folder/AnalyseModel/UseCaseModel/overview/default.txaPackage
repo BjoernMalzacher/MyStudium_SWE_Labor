@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="8krugmlp48e9s1-2krj8n">
+		<property name="$metaclass" value="UseCaseClassifier20"/>
+		<property name="$name" value="System"/>
+		<node uin="gj7tthlp48ek97-rvy0qc">
+			<property name="$metaclass" value="UseCase20"/>
+			<property name="$name" value="UseCase1"/>
+		</node>
+		<node uin="gj7tthlp48eo4g-f8g4fm">
+			<property name="$metaclass" value="UseCase20"/>
+			<property name="$name" value="UseCase2"/>
+		</node>
+		<node uin="gj7tthlp48eqft-vg7ntw">
+			<property name="$metaclass" value="UseCase20"/>
+			<property name="$name" value="UseCase3"/>
+		</node>
+	</node>
+	<node uin="8bho0jlp48eekhristz3">
+		<property name="$metaclass" value="Actor20"/>
+		<property name="$name" value="Actor"/>
+		<link uin="ieje0rlp48ey6rcaalww">
+			<property name="$metaclass" value="KernelAssociation20"/>
+			<participant referencedUin="design:node:::8bho0jlp48eekhristz3" role="Client"></participant>
+			<participant referencedUin="design:node:::gj7tthlp48ek97-rvy0qc:8krugmlp48e9s1-2krj8n" role="Supplier"></participant>
+		</link>
+		<link uin="ieje0rlp48f04w-xiqgzv">
+			<property name="$metaclass" value="KernelAssociation20"/>
+			<participant referencedUin="design:node:::8bho0jlp48eekhristz3" role="Client"></participant>
+			<participant referencedUin="design:node:::gj7tthlp48eo4g-f8g4fm:8krugmlp48e9s1-2krj8n" role="Supplier"></participant>
+		</link>
+		<link uin="ieje0rlp48f2cpq8iteo">
+			<property name="$metaclass" value="KernelAssociation20"/>
+			<participant referencedUin="design:node:::8bho0jlp48eekhristz3" role="Client"></participant>
+			<participant referencedUin="design:node:::gj7tthlp48eqft-vg7ntw:8krugmlp48e9s1-2krj8n" role="Supplier"></participant>
+		</link>
+	</node>
+	<node uin="1g64ylp48f5dnm6ymed">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Falls Sie weitere Akteure und Use Cases finden, fügen Sie diese bitte hinzu. Geben Sie Ihrem System, den Akteuren und den Use Cases noch aussagekräftige Namen."/>
+	</node>
+</nodeSet>

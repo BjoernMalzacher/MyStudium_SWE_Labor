@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-tdsqjulp48d3s9-uelfws">
+		<property name="$metaclass" value="Class20"/>
+		<property name="$name" value="C"/>
+		<property name="mod__abstract" value="true"/>
+	</node>
+</nodeSet>

@@ -1,0 +1,18 @@
+@startuml
+
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+
+start
+:App öffnen;
+:Action 2;
+while(Parse result) is (success)
+endwhile(failure)
+stop
+
+
+
+
+@enduml
