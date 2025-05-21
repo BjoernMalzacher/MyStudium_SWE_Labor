@@ -1,0 +1,54 @@
+@startuml Lerneinheit absolvieren
+
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+
+|User|
+start
+:App öffnen;
+:Lerneinheitenliste öffnen;
+repeat
+:Lerneinheit auswählen;
+|MyStudium App|
+fork
+:Zeiterfassung starten;
+fork again
+switch (Welchen Typ hat die Lerneinheit?)
+case (Folien/andere)
+    :pdf Reader öffnen;
+case (Übung)
+    :bearbeitbare Datei öffnen;
+case (Karteikarten)
+    :Anki interface öffnen;
+endswitch
+end fork
+|User|
+:Lernen;
+if(Lerneinheit abbrechen) then(nein)
+:Lerneinheit abschließen;
+else (ja)
+label abbruch
+endif
+
+|MyStudium App|
+goto abbruch
+fork
+:Fortschritt speichern;
+fork again
+:Zeiterfassung stoppen;
+end fork
+|User|
+repeat while (weiter Lernen?) is (ja) not (nein)
+|User|
+:Lerntag beenden;
+|MyStudium App|
+:Lernplan generieren/automatisch anpassen;
+:Lernfortschritt anzeigen;
+
+stop
+
+
+
+@enduml

@@ -1,4 +1,4 @@
-@startuml
+@startuml Use Case Übersicht
 left to right direction
 skinparam packageStyle rectangle
 
@@ -6,44 +6,34 @@ actor "Studierende" as Student
 
 package "Lernen & Prüfungsorganisation" {
 
-    usecase "Lernen" as lernen
-    usecase "Prüfungstermine verwalten" as pruefungstermine_verwalten
-    usecase "Lernmaterial verwalten" as lernmaterial_verwalten
-    usecase "Lernplan konfigurieren" as lernplan_konfigurieren
-    usecase "Lernfortschritt anzeigen" as lernfortschritt
-    usecase "Tagesplan verwalten" as tagesplan
+    usecase "Lern-Einheit absolvieren" as lernen
+    usecase "Prüfungen planen" as pruefungstermine_planen
+    usecase "Lernfortschritt anzeigen" as lernfortschritt /' nicht relevant als usecase'/
     usecase "Karteikarten verwalten" as karteikarten
-    usecase "Lernplan zugreifen" as lernplan_zugriff
+    usecase "Lernplan ansehen" as lernplan_ansehen
     usecase "Lernplan generieren" as lernplan_generieren
     usecase "Engpasserkennung" as engpasserkennung
     
 }
 
 Student --> lernen
-Student --> pruefungstermine_verwalten
-Student --> lernmaterial_verwalten
-Student --> lernplan_konfigurieren
+Student --> pruefungstermine_planen
 Student --> lernfortschritt
-Student --> tagesplan
+Student --> lernplan_generieren
 Student --> karteikarten
-Student --> lernplan_zugriff
+Student --> lernplan_ansehen
 Student --> engpasserkennung
 
 
 
 lernen --> lernplan_generieren : <<include>>
-lernen --> tagesplan : <<include>>
 
-lernplan_generieren --> lernmaterial_verwalten : <<include>>
-lernplan_generieren --> pruefungstermine_verwalten : <<include>>
+lernplan_generieren --> pruefungstermine_planen : <<include>>
 
-lernplan_konfigurieren --> lernplan_generieren : <<include>>
 
 engpasserkennung --> lernplan_generieren : <<include>>
 
-tagesplan --> lernplan_generieren : <<include>>
-
-lernplan_zugriff --> lernplan_generieren : <<include>>
+lernplan_ansehen --> lernplan_generieren : <<include>>
 
 lernfortschritt --> lernplan_generieren : <<include>>
 

@@ -1,0 +1,45 @@
+@startuml Prüfungen planen
+
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+
+|User|
+start
+:App öffnen;
+:Prüfungsplan verwalten;
+|MyStudium App|
+:existierende Prüfungen anzeigen;    
+
+|User|
+goto eintragen
+fork
+    while(uneingetragene Prüfungen existieren) is (ja)
+        :Prüfung hinzufügen;
+        :Datum auswählen;
+        :Name eingeben;
+        :Auf akzeptieren klicken;
+    endwhile(nein)
+    end
+
+fork again
+    while(Material noch nicht hochgeladen) is (ja)
+        :Prüfung auswählen; 
+        :Material hochladen;
+        |MyStudium App|
+        :Material speichern;
+        |User|
+    endwhile(nein)
+end fork
+
+
+
+:Speichern klicken;
+|MyStudium App|
+:Prüfungen speichern;
+stop
+
+
+
+@enduml
