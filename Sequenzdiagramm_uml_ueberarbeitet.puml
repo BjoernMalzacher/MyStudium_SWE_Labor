@@ -1,0 +1,73 @@
+@startuml Sequenz Lerneinheit absolvieren
+
+User-> MyStudium: Lerneinheitenliste öffnen
+activate MyStudium
+MyStudium -> MyStudium: Lerninhalte laden
+activate MyStudium
+MyStudium --> MyStudium
+deactivate MyStudium
+User <-- MyStudium : geladene Lerninhalte
+deactivate MyStudium
+activate User
+loop weiter Lernen
+User -> MyStudium: Lerneinheit auswählen
+deactivate User
+activate MyStudium
+MyStudium -> MyStudium: Zeiterfassung starten
+activate MyStudium
+MyStudium --> MyStudium:
+deactivate MyStudium
+User <-- MyStudium
+deactivate MyStudium
+activate User
+User -> User: Lernen
+activate User
+User --> User: fertig mit lernen
+deactivate User
+User -> MyStudium: Finished
+deactivate User
+activate MyStudium
+User <-- MyStudium: Lerneinheitsprüfung
+deactivate MyStudium
+activate User
+
+User -> MyStudium: Antworten
+deactivate User
+activate MyStudium
+MyStudium ->  MyStudium: Lösungen prüfen
+activate MyStudium
+MyStudium --> MyStudium: Benotung
+deactivate MyStudium
+alt bestanden
+MyStudium -> MyStudium: Fortschritt speichern
+activate MyStudium
+MyStudium --> MyStudium
+deactivate MyStudium
+
+end
+
+MyStudium -> MyStudium: Zeiterfassung Stoppen
+activate MyStudium
+MyStudium --> MyStudium: Arbeitszeit
+deactivate MyStudium
+User <-- MyStudium
+activate User
+deactivate MyStudium
+end
+User -> MyStudium: Lerntag beenden
+deactivate User
+activate MyStudium
+MyStudium -> MyStudium: Lernplan gnerieren/anpassen
+activate MyStudium
+MyStudium --> MyStudium
+deactivate MyStudium
+MyStudium -> MyStudium: Lernfortschritt evaluieren
+activate MyStudium
+MyStudium --> MyStudium: fortschritt anzeigen
+deactivate MyStudium
+User <-- MyStudium
+deactivate MyStudium
+activate User
+
+
+@enduml

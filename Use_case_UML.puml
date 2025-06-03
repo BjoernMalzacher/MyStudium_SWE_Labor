@@ -4,19 +4,20 @@ skinparam packageStyle rectangle
 
 actor "Studierende" as Student
 
-package "Lernen & Prüfungsorganisation" {
+package "Lernen & Prüfungsplattform" {
 
     usecase "Lern-Einheit absolvieren" as lernen
     usecase "Prüfungen planen" as pruefungstermine_planen
-    usecase "Lernfortschritt anzeigen" as lernfortschritt /' nicht relevant als usecase'/
+    usecase "Lernfortschritt evaluieren" as lernfortschritt /' nicht relevant als usecase'/
     usecase "Karteikarten verwalten" as karteikarten
-    usecase "Lernplan ansehen" as lernplan_ansehen
+    usecase "Lernplan übersicht erzeugen" as lernplan_ansehen
     usecase "Lernplan generieren" as lernplan_generieren
-    usecase "Engpasserkennung" as engpasserkennung
-    
+    usecase "Engpasserkennung" as engpasserkennung /'Verb hinzufügen/rausnehemn'/
+    usecase "Lernen" as Aktiv_Lernen    
 }
 
 Student --> lernen
+Student --> Aktiv_Lernen
 Student --> pruefungstermine_planen
 Student --> lernfortschritt
 Student --> lernplan_generieren
@@ -24,18 +25,21 @@ Student --> karteikarten
 Student --> lernplan_ansehen
 Student --> engpasserkennung
 
+/'precondtion statt include'/
+lernen --> lernplan_generieren : <<extends>> 
+
+lernplan_generieren --> pruefungstermine_planen : <<extends>>
 
 
-lernen --> lernplan_generieren : <<include>>
+engpasserkennung --> lernplan_generieren : <<extends>>
 
-lernplan_generieren --> pruefungstermine_planen : <<include>>
+lernplan_ansehen --> lernplan_generieren : <<extends>>
 
+lernfortschritt --> lernplan_generieren : <<extends>>
 
-engpasserkennung --> lernplan_generieren : <<include>>
+Aktiv_Lernen --> lernen : <<include>>
 
-lernplan_ansehen --> lernplan_generieren : <<include>>
-
-lernfortschritt --> lernplan_generieren : <<include>>
+lernen --> lernfortschritt: <<include>>
 
 
 

@@ -1,0 +1,58 @@
+@startuml Klassendiagramm
+
+class       MyStudiumApp{
+    + zeigeLernfortschritt()
+    + void addLernmaterial(file)
+    + void addKlausur(name: String, time: TimeStamp)
+    + file ExportKarteikarten(KarteikartenLerneinheit: Karteikarten)
+    - Lernplan erstelleLernplan()
+    + void addTimeOff(TimeRange)
+}
+class       Timer{
+    +Date StartTimeStamp
+    +Date EndTimestamp
+
+    +void start(Lerneinheit einheit)
+    +double finish()
+}
+class       Lernplan{
+            -dict[Klausur: TimeStamp] Klausuren 
+            -TimeRange[] gesperrteZeiten
+            +Tagesplan[] generieren()
+            +Tagesplan getTagesplan(Date TimeStamp)
+            }
+
+class       Tagesplan{
+    - Lerneinheit[] NochZuLernen 
+    - Lerneinheit[] BereitsGelernt
+    + TimeStamp Datum
+    + void gelernt(Lerneinheit einheit)
+    + Lerneinheit[] fortschrittAnzeigen()
+}      
+abstract class       Lerneinheit{
+            +float Fortschritt
+            -time gelernteZeit
+            +bool isCompleted()
+            +Material {abstract} getLernmaterial()
+            +void addGelernteZeit(time Zeit)
+}
+class       KarteikartenLerneinheit
+class       SkriptLerneinheit
+class       uebungsblattLerneinheit
+class       Engpasserkennung{
+            +void erkenneEngpass(Lernplan)
+}
+class       KarteikartenErsteller{
+            +KarteikartenLerneinheit erstelle()
+}
+
+KarteikartenLerneinheit --|> Lerneinheit
+SkriptLerneinheit --|> Lerneinheit
+uebungsblattLerneinheit --|> Lerneinheit
+Lernplan "1" --* "n"  Tagesplan
+MyStudiumApp "1" -- "1" Engpasserkennung
+MyStudiumApp "1" --  "1"Lernplan
+Timer "n" *-- "1" MyStudiumApp
+KarteikartenErsteller "n" *-- "1" MyStudiumApp
+Tagesplan "1" --* "n" Lerneinheit
+@enduml

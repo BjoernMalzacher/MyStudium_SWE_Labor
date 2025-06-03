@@ -8,6 +8,10 @@ skinparam shadowing false
 |User|
 start
 :App öffnen;
+|MyStudium App|
+
+:Lerneinheit laden;
+|User|
 :Lerneinheitenliste öffnen;
 repeat
 :Lerneinheit auswählen;
@@ -15,7 +19,8 @@ repeat
 fork
 :Zeiterfassung starten;
 fork again
-switch (Welchen Typ hat die Lerneinheit?)
+:Typ der Lerneinheit ermitteln;
+switch ()
 case (Folien/andere)
     :pdf Reader öffnen;
 case (Übung)
@@ -25,28 +30,34 @@ case (Karteikarten)
 endswitch
 end fork
 |User|
-:Lernen;
+/'include usecase lernen'/
+:Lernen; 
 if(Lerneinheit abbrechen) then(nein)
 :Lerneinheit abschließen;
 else (ja)
 label abbruch
 endif
-
+/'als usecase hinzufügen Wenn durchgefallen kein fortschritt'/
 |MyStudium App|
 goto abbruch
-fork
+:Lerneinheit prüfen;
+if(bestanden) then(ja)
+
 :Fortschritt speichern;
-fork again
+else(nein)
+endif
+
+
 :Zeiterfassung stoppen;
-end fork
+
 |User|
 repeat while (weiter Lernen?) is (ja) not (nein)
 |User|
 :Lerntag beenden;
 |MyStudium App|
 :Lernplan generieren/automatisch anpassen;
-:Lernfortschritt anzeigen;
-
+:Lernfortschritt evaluieren;
+|User|
 stop
 
 

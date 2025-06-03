@@ -1,0 +1,53 @@
+@startuml
+
+class       UserInterface 
+class       controller
+class       Timer{
+    +Date StartTimeStamp
+    +Date EndTimestamp
+
+    +void start()
+    + finis
+}
+enum        Klausur
+class       Lernplan{
+            -dict[Klausur: TimeStamp] Klausuren 
+            
+            +void generieren()
+            +Tagesplan getTagesplan(Date TimeStamp)
+
+            }
+
+class       Tagesplan{
+    - Lerneinheit[] NochZuLernen 
+    - Lerneinheit[] BereitsGelernt  
+    + void gelernt(Lerneinheit einheit)
+    + Lerneinheit[] fortschrittAnzeigen()
+    
+}      
+abstract class       Lerneinheit{
+            +float Fortschritt
+            
+            +bool isCompleted()
+            +Material {abstract} getLernmaterial()
+            
+}
+class       KarteikartenLerneinheit
+class       SkriptLerneinheit
+class       uebungsblattLerneinheit
+class       Engpasserkennung{
+            +void erkenneEngpass(Lernplan)
+}
+class       KarteikartenErsteller{
+            +KarteikartenLerneinheit erstelle()
+}
+
+KarteikartenLerneinheit --|> Lerneinheit
+SkriptLerneinheit --|> Lerneinheit
+uebungsblattLerneinheit --|> Lerneinheit
+Lernplan "1" *-- "n"  Tagesplan
+controller --* "1" Engpasserkennung
+controller "1"*--*  "1"Lernplan
+UserInterface "1" *--* "1" controller
+Tagesplan "1" *--* "n" Lerneinheit
+@enduml

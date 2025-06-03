@@ -11,33 +11,37 @@ start
 :Prüfungsplan verwalten;
 |MyStudium App|
 :existierende Prüfungen anzeigen;    
-
 |User|
-goto eintragen
-fork
-    while(uneingetragene Prüfungen existieren) is (ja)
-        :Prüfung hinzufügen;
-        :Datum auswählen;
-        :Name eingeben;
-        :Auf akzeptieren klicken;
-    endwhile(nein)
-    end
+label repeat
+repeat
 
-fork again
-    while(Material noch nicht hochgeladen) is (ja)
-        :Prüfung auswählen; 
-        :Material hochladen;
-        |MyStudium App|
-        :Material speichern;
-        |User|
-    endwhile(nein)
-end fork
+while(uneingetragene Prüfungen existieren) is (ja)
+    :Prüfung hinzufügen;
+    :Datum auswählen;
+    :Name eingeben;
+    |MyStudium App|
+    :Eingaben Zwischenspeichern;
+    |User|
+endwhile(nein)
 
+repeat
 
+while(Material noch nicht hochgeladen) is (ja)
+    :Prüfung auswählen; 
+    :Material hochladen;
+    |MyStudium App|
+    :Material Zwischenspeichern;
+    |User|
+endwhile(nein)
 
-:Speichern klicken;
+repeat while (Material fehlt?) is (ja) not (nein)
+
+repeat while (uneingetragene Prüfungen?) is (ja) not (nein)
+
+:fertig clicken;
 |MyStudium App|
-:Prüfungen speichern;
+:Konfiguration speichern;
+|User|
 stop
 
 
