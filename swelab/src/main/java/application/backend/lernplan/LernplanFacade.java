@@ -1,14 +1,14 @@
 package application.backend.lernplan;
 
-import application.backend.lernplan.LernplanFactory;
 import application.backend.lernplan.impl.LernplanImpl;
 import application.backend.lernplan.port.Lernplan;
-import application.statemachine.port.StateMachine;
 import application.statemachine.StateMachineFactory;
+import application.statemachine.port.StateMachine;
 
 public class LernplanFacade implements LernplanFactory, Lernplan {
     private LernplanImpl LernplanImpl;
     private StateMachine stateMachine;
+    @Override
     public Lernplan Lernplan(){
         if (this.LernplanImpl == null){ // lazy initialization
             this.stateMachine = StateMachineFactory.FACTORY.stateMachine();
@@ -21,3 +21,4 @@ public class LernplanFacade implements LernplanFactory, Lernplan {
             return; // not allowed
         this.xyImpl.foo(); // allowed*/
     }
+}
