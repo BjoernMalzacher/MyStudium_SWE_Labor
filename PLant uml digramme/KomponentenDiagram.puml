@@ -1,0 +1,32 @@
+@startuml Komponentendiagramm
+[Anki] 
+[PDF Reader]
+[drawablePDF]
+
+Interface pdfReaderInterface  as PRU
+Interface AnkiInterface as AI
+Interface drawablePDFInterface as DI
+Interface GenerativeAI
+PRU - [PDF Reader]
+AI - [Anki]
+DI - [drawablePDF]
+
+
+package "Backend" {
+    [Timer]
+    [Lernplan] - [Lernplangenerator]
+    [Testgenerator] -> [GenerativeAI]: import
+}
+Package "UI" {
+    [Reader] --> PRU: access
+    [Reader] --> [Timer]: import
+    [Reader] --> DI: access
+    [Reader] --> AI: access
+    [Tagesplan] --> [Lernplan]: import
+    [Tagesplan] --> [Reader]: access
+    [KarteikartenErsteller] --> [AI]: access
+    [Prüf-Interface] --> [Testgenerator]: access
+    [Tagesplan] --> [Prüf-Interface]: access
+}
+
+@enduml
