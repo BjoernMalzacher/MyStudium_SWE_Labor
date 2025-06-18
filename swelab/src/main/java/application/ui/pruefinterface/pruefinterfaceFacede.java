@@ -1,13 +1,17 @@
 package application.ui.pruefinterface;
 
-public class pruefinterfaceFacede implements XyFactory, port.Xy { 
- private impl.XyImpl xyImpl;
+import application.statemachine.StateMachineFactory;
+import application.statemachine.port.StateMachine;
+import application.ui.pruefinterface.impl.pruefinterfaceImpl;
+import application.ui.pruefinterface.port.pruefinterface;
+public class pruefinterfaceFacede implements pruefInterfaceFactory, pruefinterface { 
+ private pruefinterfaceImpl pruefinterfaceImpl;
  private StateMachine stateMachine;
- public port.Xy xy(){
+ public pruefinterface pruefinterface(){
     if 
-(this.xyImpl == null){                    // lazy initialization
+(this.pruefinterfaceImpl == null){                    // lazy initialization
  this.stateMachine = StateMachineFactory.FACTORY.stateMachine();
- this.xyImpl = new port.XyImpl(/* more args */);
+ this.pruefinterfaceImpl= new pruefinterfaceImpl(/* more args */);
  return this;
  }
  // delegate to the right implementation

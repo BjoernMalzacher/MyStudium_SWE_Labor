@@ -1,20 +1,24 @@
 package application.ui.reader;
-
-public class readerFacede implements XyFactory, port.Xy { 
- private impl.XyImpl xyImpl;
+import application.statemachine.StateMachineFactory;
+import application.statemachine.port.StateMachine;
+import application.ui.reader.readerFactory;
+import application.ui.reader.impl.readerImpl;
+import application.ui.reader.port.reader;
+public class readerFacede implements readerFactory, reader { 
+ private readerImpl readerImpl;
  private StateMachine stateMachine;
- public port.Xy xy(){
+ public reader reader(){
     if 
-(this.xyImpl == null){                    // lazy initialization
+(this.readerImpl == null){                    // lazy initialization
  this.stateMachine = StateMachineFactory.FACTORY.stateMachine();
- this.xyImpl = new port.XyImpl(/* more args */);
+ this.readerImpl= new readerImpl(/* more args */);
+
+}
  return this;
  }
  // delegate to the right implementation
  public void foo(){
-      if 
-(!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
- Return;                                    
-      this.xyImpl.foo();            
+      if (!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
+          return this.readerImpl.foo();            
      }
    }

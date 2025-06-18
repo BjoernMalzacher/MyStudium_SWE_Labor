@@ -2,29 +2,31 @@ package application.ui.karteikartenersteller;
 
 import application.statemachine.StateMachineFactory;
 import application.statemachine.port.StateMachine;
+import application.ui.karteikartenersteller.port.Karteikartenersteller;
+import application.ui.karteikartenersteller.impl.karteikartenerstellerImpl;
 
-public class KarteikartenFacede implements KarteikartenFactory,port.Karteikartenersteller { 
- private impl.KarteikartenImpl KarteikartenImpl;
+public class KarteikartenFacede implements KarteikartenFactory,Karteikartenersteller { 
+ private karteikartenerstellerImpl KarteikartenImpl;
  private StateMachine stateMachine;
- public application.ui.karteikartenersteller.port.Karteikartenersteller Karteikartenersteller(){
-    if 
-(this.KarteikartenImpl == null){                    // lazy initialization
+ public Karteikartenersteller Karteikartenersteller(){
+    
+  if (this.KarteikartenImpl == null){                    // lazy initialization
  this.stateMachine = StateMachineFactory.FACTORY.stateMachine();
- this.KarteikartenImpl = new port.KarteikartenImpl(/* more args */);
+ this.KarteikartenImpl = new karteikartenerstellerImpl(/* more args */);
+  } 
  return this;
- }
- // delegate to the right implementation
+ 
+
+} // delegate to the right implementation
  public void foo(){
-      if 
-(!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
- Return;                                    
-      this.xyImpl.foo();            
+      //if (!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
+        //return KarteikartenImpl.foo();            
      }
  @Override
- public port.karteikartenersteller karteikartenersteller() {
+ public application.ui.karteikartenersteller.port.Karteikartenersteller karteikartenersteller() {
   // TODO Auto-generated method stub
   throw new UnsupportedOperationException("Unimplemented method 'karteikartenersteller'");
  }
-   }
+    }
  // not allowed
                  // allowed
