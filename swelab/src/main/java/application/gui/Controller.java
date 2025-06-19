@@ -13,9 +13,10 @@ import application.usecase.port.UseCase;
 
 public class Controller implements ActionListener, Observer {
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings({"unused", "FieldMayBeFinal"})
 	private MainFrame myView;
 	private UseCase myModel;
+        @SuppressWarnings("FieldMayBeFinal")
 	private Subject subject;
 
 	public Controller(MainFrame view, Subject subject, UseCase model) {
