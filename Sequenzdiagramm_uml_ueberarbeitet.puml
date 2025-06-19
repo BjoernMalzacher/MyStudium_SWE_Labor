@@ -1,73 +1,66 @@
 @startuml Sequenz Lerneinheit absolvieren
 
-User-> MyStudium: Lerneinheitenliste öffnen
-activate MyStudium
-MyStudium -> MyStudium: Lerninhalte laden
-activate MyStudium
-MyStudium --> MyStudium
-deactivate MyStudium
-User <-- MyStudium : geladene Lerninhalte
-deactivate MyStudium
-activate User
+activate UI
+UI-> Tagesplan: LoadLerneinheitList()
+activate Tagesplan
+UI <-- Tagesplan: List:String[]
+deactivate Tagesplan
+
+
+
 loop weiter Lernen
-User -> MyStudium: Lerneinheit auswählen
-deactivate User
-activate MyStudium
-MyStudium -> MyStudium: Zeiterfassung starten
-activate MyStudium
-MyStudium --> MyStudium:
-deactivate MyStudium
-User <-- MyStudium
-deactivate MyStudium
-activate User
-User -> User: Lernen
-activate User
-User --> User: fertig mit Lernen
-deactivate User
-User -> MyStudium: Finished
-deactivate User
-activate MyStudium
-User <-- MyStudium: Lerneinheitsprüfung
-deactivate MyStudium
-activate User
 
-User -> MyStudium: Antworten
-deactivate User
-activate MyStudium
-MyStudium ->  MyStudium: Lösungen prüfen
-activate MyStudium
-MyStudium --> MyStudium: Benotung
-deactivate MyStudium
-alt bestanden
-MyStudium -> MyStudium: Fortschritt speichern
-activate MyStudium
-MyStudium --> MyStudium
-deactivate MyStudium
+UI -> Tagesplan: LoadLerneinheit()
+activate Tagesplan
+Tagesplan ->reader: loadFile()
+activate reader
+Tagesplan -> Timer: start()
+activate Timer
+Timer --> Tagesplan:True
+deactivate Timer
+Tagesplan <-- reader:
+deactivate reader
+UI <--- Tagesplan: Visible PDF
+deactivate Tagesplan
+UI -> Reader: closeCurrentFile()
+activate Reader
 
+UI <-- Reader: Visible PDF
+deactivate Reader
+UI -> Timer: stop()
+activate Timer
+UI <-- Timer: elapsedTime
+deactivate Timer
+UI -->Testgenerator: evaluateTest()
+activate Testgenerator
+UI<-- Testgenerator: score:Float
+deactivate Testgenerator
+
+
+alt score > threshhold
+UI -> Tagesplan: speichereFortschritt()
+activate Tagesplan
+UI <-- Tagesplan
+deactivate Tagesplan
 end
 
-MyStudium -> MyStudium: Zeiterfassung Stoppen
-activate MyStudium
-MyStudium --> MyStudium: Arbeitszeit
-deactivate MyStudium
-User <-- MyStudium
-activate User
-deactivate MyStudium
 end
-User -> MyStudium: Lerntag beenden
-deactivate User
-activate MyStudium
-MyStudium -> MyStudium: Lernplan generieren/anpassen
-activate MyStudium
-MyStudium --> MyStudium
-deactivate MyStudium
-MyStudium -> MyStudium: Lernfortschritt evaluieren
-activate MyStudium
-MyStudium --> MyStudium: Fortschritt anzeigen
-deactivate MyStudium
-User <-- MyStudium
-deactivate MyStudium
-activate User
+UI -> Tagesplan: finishDay()
+activate Tagesplan
+Tagesplan -> Lernplangenerator: adjustCurrentLernplan()
+activate Lernplangenerator
+Tagesplan <-- Lernplangenerator
+UI <-- Tagesplan
+deactivate Tagesplan
+
+deactivate Lernplangenerator
+UI -> Lernplan: evaluate()
+activate Lernplan
+Lernplan --> UI
+deactivate Lernplan
+UI --> UI: Fortschritt anzeigen
+
+
 
 
 @enduml

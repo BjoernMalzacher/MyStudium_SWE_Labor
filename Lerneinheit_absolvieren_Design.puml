@@ -1,0 +1,70 @@
+@startuml Lerneinheit absolvieren Design
+
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+
+|User|
+start
+:App öffnen;
+|Tagesplan|
+:Lerneinheit laden;
+
+:Lerneinheitenliste öffnen;
+repeat
+:Lerneinheit auswählen;
+|Reader|
+fork
+:Typ der Lerneinheit ermitteln;
+switch ()
+
+
+case (Folien/andere)
+    :pdf Reader öffnen;
+case (Übung)
+    :bearbeitbare Datei öffnen;
+case (Karteikarten)
+    :Anki interface öffnen;
+endswitch
+fork again
+|Timer|
+:Zeiterfassung starten;
+|Reader|
+end fork
+|User|
+/'include usecase lernen'/
+:Lernen; 
+if(Lerneinheit abbrechen) then(nein)
+:Lerneinheit abschließen;
+else (ja)
+
+label abbruch
+endif
+/'als usecase hinzufügen Wenn durchgefallen kein fortschritt'/
+|Testgenerator|
+goto abbruch
+:Lerneinheit prüfen;
+if(bestanden) then(ja)
+|Tagesplan|
+:Fortschritt speichern;
+else(nein)
+endif
+
+|Timer|
+:Zeiterfassung stoppen;
+
+|User|
+repeat while (weiter Lernen?) is (ja) not (nein)
+|User|
+:Lerntag beenden;
+|Lernplangenerator|
+:Lernplan generieren/automatisch anpassen;
+|Lernplan|
+:Lernfortschritt evaluieren;
+|User|
+stop
+
+
+
+@enduml

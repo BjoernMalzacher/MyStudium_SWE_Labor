@@ -21,4 +21,19 @@ public class readerFacede implements readerFactory, reader {
       if (!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
           return this.readerImpl.foo();            
      }
+ @Override
+ public boolean loadFile(String Path) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'loadFile'");
+ }
+ @Override
+ public String getTypeOfLerneinheit(String LerneinheitID) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getTypeOfLerneinheit'");
+ }
+ @Override
+ public boolean closeCurrentFile() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'closeCurrentFile'");
+ }
    }

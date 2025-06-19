@@ -20,4 +20,24 @@ public class timerFacade implements timerFactory, timer {
             return; // not allowed
         this.xyImpl.foo(); // allowed*/
     }
+    @Override
+    public double stop() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'stop'");
+    }
+    @Override
+    public boolean start() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'start'");
+    }
+    @Override
+    public double getTime() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTime'");
+    }
+    @Override
+    public boolean pause() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'pause'");
+    }
 }

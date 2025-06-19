@@ -21,4 +21,10 @@ public class LernplanFacade implements LernplanFactory, Lernplan {
             return; // not allowed
         this.xyImpl.foo(); // allowed*/
     }
+    
+    @Override
+    public String[] evaluate() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'evaluate'");
+    }
 }

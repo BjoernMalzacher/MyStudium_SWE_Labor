@@ -1,5 +1,8 @@
 package application.backend.lernplangenerator;
 
+import java.sql.Date;
+
+import application.backend.lernplan.port.Lernplan;
 import application.backend.lernplangenerator.impl.LernplangeneratorImpl;
 import application.backend.lernplangenerator.port.Lernplangenerator;
 import application.statemachine.StateMachineFactory;
@@ -20,5 +23,15 @@ public class LernplangeneratorFacade implements LernplangeneratorFactory, Lernpl
         /*if (!stateMachine.getState().isSubStateOf(...))//is the call allowed or not?
             return; // not allowed
         this.xyImpl.foo(); // allowed*/
+    }
+    @Override
+    public Lernplan AdjustCurrentLernplan(Date[] daysOff) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'AdjustCurrentLernplan'");
+    }
+    @Override
+    public Lernplan Generate(Date[] pruefungen, String[] materialienPfade) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'Generate'");
     }
 }
