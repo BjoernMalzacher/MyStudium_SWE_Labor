@@ -1,5 +1,7 @@
 @startuml Klassendiagramm
+interface AIinterface{
 
+}
 class       MyStudiumApp{
     + zeigeLernfortschritt()
     + void addLernmaterial(file)
@@ -8,6 +10,8 @@ class       MyStudiumApp{
     - Lernplan erstelleLernplan()
     + void addTimeOff(TimeRange)
 }
+
+
 class       Timer{
     +Date StartTimeStamp
     +Date EndTimestamp
@@ -36,6 +40,7 @@ abstract class       Lerneinheit{
             +Material {abstract} getLernmaterial()
             +void addGelernteZeit(time Zeit)
 }
+class       Karteikarten
 class       KarteikartenLerneinheit
 class       SkriptLerneinheit
 class       uebungsblattLerneinheit
@@ -55,4 +60,7 @@ MyStudiumApp "1" --  "1"Lernplan
 Timer "n" *-- "1" MyStudiumApp
 KarteikartenErsteller "n" *-- "1" MyStudiumApp
 Tagesplan "1" --* "n" Lerneinheit
+MyStudiumApp "1" -- "1" AIinterface
+Karteikarten "n" -- "1" KarteikartenErsteller
+Karteikarten "n" -- "1" KarteikartenLerneinheit 
 @enduml

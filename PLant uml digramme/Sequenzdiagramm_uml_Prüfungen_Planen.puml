@@ -1,0 +1,65 @@
+@startuml Sequenz Lerneinheit absolvieren
+loop Alle Daten Korrekt?
+
+User-> MyStudium: Prüfungen verwalten
+activate MyStudium
+
+User <-- MyStudium: Prüfungen anzeigen
+activate User
+deactivate MyStudium
+alt Prüfungstermine Editieren P
+    loop Weitere Termine
+        User -> MyStudium: Existierende Prüfungen auswählen
+        deactivate User
+        activate MyStudium
+        User <-- MyStudium: Ergebnis    activate User
+        deactivate MyStudium
+        User -> MyStudium: Prüfungstermine editieren
+        deactivate User
+        activate MyStudium
+        User <-- MyStudium: Ergebnis
+        deactivate MyStudium
+        activate User
+    end
+else Neue Prüfung anlegen
+
+loop Prüfungstermine und Material komplett?
+        loop Neue Prüfung eintragen
+        User -> MyStudium: Prüfung hinzufügen
+        activate MyStudium
+        User <-- MyStudium
+        deactivate MyStudium
+        User -> MyStudium: Datum auswählen
+        activate MyStudium
+        User <-- MyStudium
+        deactivate MyStudium
+        User -> MyStudium: Name eingeben
+        activate MyStudium
+        User <-- MyStudium
+        deactivate MyStudium
+        User -> MyStudium: Eingaben zwischenspeichern
+        activate MyStudium
+        User <-- MyStudium
+        deactivate MyStudium
+        end
+
+        loop weiteres Material hinzufügen
+        User -> User: bestehende Prüfung auswählen
+        User -> MyStudium: Material hochladen
+        deactivate User
+        activate MyStudium
+        MyStudium -> MyStudium: Material zwischenspeichern
+        MyStudium --> User: Success
+        deactivate MyStudium
+        activate User
+        end
+    end
+    end
+    User -> MyStudium: Konfiguration speichern
+    deactivate User
+    activate MyStudium
+    MyStudium --> User
+    deactivate MyStudium
+    
+end 
+@enduml

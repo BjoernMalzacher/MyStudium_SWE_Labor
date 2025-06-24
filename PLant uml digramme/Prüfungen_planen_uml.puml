@@ -8,39 +8,50 @@ skinparam shadowing false
 |User|
 start
 :App öffnen;
-:Prüfungsplan verwalten;
-|MyStudium App|
-:existierende Prüfungen anzeigen;    
-|User|
-label repeat
 repeat
-
-while(uneingetragene Prüfungen existieren) is (ja)
-    :Prüfung hinzufügen;
-    :Datum auswählen;
-    :Name eingeben;
+    :Prüfungsplan verwalten;
     |MyStudium App|
-    :Eingaben Zwischenspeichern;
+    :existierende Prüfungen anzeigen;
     |User|
-endwhile(nein)
+    if(Prüfungstermine Editieren? ) then( [Prüfungstermin editeren])
+        while(Weitere Termine editieren) is ([editieren])
+        :existierenden Prüfungstermin auswählen;
+        :Prüfungstermin editeren;
+        endwhile([existierende Termine sind Korrekt])
 
-repeat
+    else ([Neue Prüfung anlegen])
 
-while(Material noch nicht hochgeladen) is (ja)
-    :Prüfung auswählen; 
-    :Material hochladen;
+        |User|
+        label repeat
+        repeat
+
+            while(Neue Prüfung eintragen ?) is ([Prüfung eintragen])
+                :Prüfung hinzufügen;
+                :Datum auswählen;
+                :Name eingeben;
+                |MyStudium App|
+                :Eingaben Zwischenspeichern;
+                |User|
+            endwhile([keine neue Prüfung eintragen])
+
+            while(weiteres Material hochladen?) is ([Material Hochladen])
+                :bestehende Prüfung auswählen; 
+                :Material hochladen;
+                |MyStudium App|
+                :Material Zwischenspeichern;
+                |User|
+            endwhile([kein neues Material])
+
+        repeat while (Prüfungstermine und Material komplett?) is ([nein]) not ([ja])
+
+    endif
     |MyStudium App|
-    :Material Zwischenspeichern;
+    :Konfiguration speichern;
     |User|
-endwhile(nein)
+repeat  while(Alle Daten Korrekt?) is ([Daten müssen überarbeitet werden]) not ([Daten sind korrekt])  
+   
 
-repeat while (Material fehlt?) is (ja) not (nein)
-
-repeat while (uneingetragene Prüfungen?) is (ja) not (nein)
-|MyStudium App|
-:Konfiguration speichern;
-|User|
-stop
+    stop
 
 
 

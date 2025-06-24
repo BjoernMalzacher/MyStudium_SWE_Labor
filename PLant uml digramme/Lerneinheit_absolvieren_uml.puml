@@ -9,7 +9,6 @@ skinparam shadowing false
 start
 :App öffnen;
 |MyStudium App|
-
 :Lerneinheit laden;
 |User|
 :Lerneinheitenliste öffnen;
@@ -21,37 +20,39 @@ fork
 fork again
 :Typ der Lerneinheit ermitteln;
 switch ()
-case (Folien/andere)
+case ([Folien/andere])
     :pdf Reader öffnen;
-case (Übung)
+case ([Übung])
     :bearbeitbare Datei öffnen;
-case (Karteikarten)
+case ([Karteikarten])
     :Anki interface öffnen;
 endswitch
 end fork
 |User|
 /'include usecase lernen'/
 :Lernen; 
-if(Lerneinheit abbrechen) then(nein)
+if(Lerneinheit abbrechen?) then([Einheit fertig])
 :Lerneinheit abschließen;
-else (ja)
+else ([Abbrechen])
 label abbruch
 endif
 /'als usecase hinzufügen Wenn durchgefallen kein fortschritt'/
 |MyStudium App|
 goto abbruch
 :Lerneinheit prüfen;
-if(bestanden) then(ja)
-
+|User|
+:Prüfung absolvieren;
+|MyStudium App|
+if(Bestanden?) then([ja])
 :Fortschritt speichern;
-else(nein)
+else([nein])
 endif
 
 
 :Zeiterfassung stoppen;
 
 |User|
-repeat while (weiter Lernen?) is (ja) not (nein)
+repeat while (weiter Lernen?) is ([weitere Lerneinheiten machen]) not ([fertig für heute])
 |User|
 :Lerntag beenden;
 |MyStudium App|

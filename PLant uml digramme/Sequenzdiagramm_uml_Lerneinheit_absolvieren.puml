@@ -13,16 +13,22 @@ loop weiter Lernen
 User -> MyStudium: Lerneinheit auswählen
 deactivate User
 activate MyStudium
+MyStudium -> MyStudium:Lerneinheitstyp ermitteln
+
+activate MyStudium
+
 MyStudium -> MyStudium: Zeiterfassung starten
 activate MyStudium
 MyStudium --> MyStudium:
+deactivate MyStudium
+MyStudium --> MyStudium:Typ der Lerneinheit
 deactivate MyStudium
 User <-- MyStudium
 deactivate MyStudium
 activate User
 User -> User: Lernen
 activate User
-User --> User: fertig mit lernen
+User --> User: fertig mit Lernen
 deactivate User
 User -> MyStudium: Finished
 deactivate User
@@ -57,13 +63,13 @@ end
 User -> MyStudium: Lerntag beenden
 deactivate User
 activate MyStudium
-MyStudium -> MyStudium: Lernplan gnerieren/anpassen
+MyStudium -> MyStudium: Lernplan generieren/anpassen
 activate MyStudium
 MyStudium --> MyStudium
 deactivate MyStudium
 MyStudium -> MyStudium: Lernfortschritt evaluieren
 activate MyStudium
-MyStudium --> MyStudium: fortschritt anzeigen
+MyStudium --> MyStudium: Fortschritt anzeigen
 deactivate MyStudium
 User <-- MyStudium
 deactivate MyStudium
