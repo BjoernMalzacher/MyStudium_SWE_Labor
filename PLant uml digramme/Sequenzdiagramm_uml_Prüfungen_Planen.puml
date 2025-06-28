@@ -1,4 +1,4 @@
-@startuml Sequenz Lerneinheit absolvieren
+@startuml Sequenz Prüfungen Planen
 loop Alle Daten Korrekt?
 
 User-> MyStudium: Prüfungen verwalten
