@@ -23,7 +23,7 @@ public class UseCaseFacade implements UseCaseFactory, UseCase {
 
 	@Override
 	public synchronized void sysop(String str) {
-		if (this.stateMachine.getState().isSubStateOf( S.CREATE_TEMPLATE /* choose right state*/ ))
+		if (this.stateMachine.getState().isSubStateOf( S.ADJUST_PLAN /* choose right state*/ ))
 			this.usecase.sysop(str);
 	}
 	

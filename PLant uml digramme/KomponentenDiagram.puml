@@ -1,17 +1,60 @@
 @startuml Komponentendiagramm
+
+
 [Anki] 
 [PDF Reader]
-[drawablePDF]
+[AI]
 
 Interface pdfReaderInterface  as PRU
-Interface AnkiInterface as AI
-Interface drawablePDFInterface as DI
-Interface GenerativeAI
+Interface AnkiInterface as AnkiIntf
+Interface GenerativeAI as GAI
 PRU - [PDF Reader]
-AI - [Anki]
-DI - [drawablePDF]
+AnkiIntf - [Anki]
+GAI - [AI]
+component [UI]
+
+skinparam BackgroundColor transparent
+skinparam componentStyle rectangle
+component Mystudium {
+    'port definitions
+    portin Manager
+    portout AI_access
+    portout PDF
+    portout Anki_access
+
+    'use case definitions
+    component [Lernen] 
+    component [Lern_Einheit_absolvieren] 
+    component [Lernplan_generieren] 
+    component [Prüfungen_planen] 
+    component [Lernplanübersicht_erzeugen] 
+    component [Karteikarten_verwalten] 
+    component [Lerneinheit_prüfen]
+
+    'portin(manager) zu use cases
+    Manager -- Lern_Einheit_absolvieren
+    Manager -- Lernen
+    Manager -- Karteikarten_verwalten
+    Manager -- Prüfungen_planen
+    Manager -- Lernplanübersicht_erzeugen
+
+    'interne Pfeile
+    Lern_Einheit_absolvieren ..> Lerneinheit_prüfen
+
+    'use case zu portout
+    [Karteikarten_verwalten] --> Anki_access: access
+    [Lerneinheit_prüfen] --> AI_access
+    [Lernen] --> PDF: access
+    [Lern_Einheit_absolvieren] --> PDF: access
+}
+
+UI -- Manager
+AI_access --> GAI
+PDF --> PRU
+Anki_access --> AnkiIntf
 
 
+/'
 package "Backend" {
     [Timer]
     [Lernplan] - [Lernplangenerator]
@@ -27,6 +70,6 @@ Package "UI" {
     [KarteikartenErsteller] --> [AI]: access
     [Prüf-Interface] --> [Testgenerator]: access
     [Tagesplan] --> [Prüf-Interface]: access
-}
+}'/
 
 @enduml

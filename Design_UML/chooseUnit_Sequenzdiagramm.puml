@@ -1,0 +1,29 @@
+@startuml chooseUnit()
+
+Facade -> TakeCourseUnits: chooseUnit()
+activate Facade
+activate TakeCourseUnits
+TakeCourseUnits -> TakeCourseUnits: getTypeOfUnit()
+activate TakeCourseUnits
+TakeCourseUnits --> TakeCourseUnits: Type
+deactivate TakeCourseUnits
+
+alt Type==Karten
+TakeCourseUnits -> Anki: getAnkiCards()
+activate Anki
+TakeCourseUnits <--Anki: AnkiCard[]
+deactivate Anki
+else Type == PDF
+
+TakeCourseUnits -> PDFreader: LoadPDF()
+activate PDFreader
+TakeCourseUnits <-- PDFreader: PDF
+deactivate PDFreader
+end
+Facade <-- TakeCourseUnits: PDF || AnkiCard[]
+deactivate TakeCourseUnits
+deactivate Facade
+
+
+
+@enduml

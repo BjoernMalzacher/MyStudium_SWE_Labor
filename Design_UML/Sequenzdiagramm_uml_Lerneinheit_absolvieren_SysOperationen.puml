@@ -1,0 +1,50 @@
+@startuml Sequenz Lerneinheit absolvieren
+
+
+loop weiter Lernen
+UI-> TakeCourseUnits: LoadUnitsForDay()
+activate TakeCourseUnits
+UI <-- TakeCourseUnits : Unit[]
+deactivate TakeCourseUnits
+activate UI
+UI -> TakeCourseUnits: chooseUnit()
+deactivate UI
+activate TakeCourseUnits
+alt Karteikarten
+
+TakeCourseUnits -> Anki:getAnkiCards()
+activate Anki
+TakeCourseUnits <-- Anki: AnkiCards[]
+deactivate Anki
+else  Folien/Übungen
+TakeCourseUnits -> PDFreader: loadFile()
+activate PDFreader
+TakeCourseUnits <-- PDFreader: PDF
+deactivate PDFreader
+end
+UI <-- TakeCourseUnits: Unit
+deactivate TakeCourseUnits
+activate UI
+UI -> UI: Lernen
+activate UI
+
+UI -> CourseTestGenerator: generateTest()
+deactivate UI
+activate CourseTestGenerator
+UI<-- CourseTestGenerator: Exam
+deactivate CourseTestGenerator
+
+UI -> TakeCourseUnits: EvaluateExam()
+activate TakeCourseUnits
+TakeCourseUnits --> UI: Exam
+deactivate TakeCourseUnits
+end
+UI -> TakeCourseUnits: adjustPlan()
+activate TakeCourseUnits
+UI <-- TakeCourseUnits: PlanEvaluation
+deactivate TakeCourseUnits
+
+
+
+
+@enduml

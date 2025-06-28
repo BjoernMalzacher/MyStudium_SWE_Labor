@@ -1,0 +1,68 @@
+@startuml Lerneinheit absolvieren
+
+' Only greyscale
+skinparam monochrome true
+' Disable shadows
+skinparam shadowing false
+|UI|
+|CourseTestGenerator|
+|TakeCourseUnit|
+|Anki/PDFreader|
+|UI|
+start
+|TakeCourseUnit|
+:Lerneinheiten laden;
+|UI|
+:Lerneinheitenliste öffnen;
+repeat
+:Lerneinheit auswählen;
+|TakeCourseUnit|
+fork
+:Zeiterfassung starten;
+fork again
+:Typ der Lerneinheit ermitteln;
+|Anki/PDFreader|
+switch ()
+case ([Folien/andere])
+    |Anki/PDFreader|
+    :pdf Reader öffnen;
+case ([Übung])
+    :bearbeitbare Datei öffnen;
+case ([Karteikarten])
+    |Anki/PDFreader|
+    :Anki interface öffnen;
+endswitch
+|TakeCourseUnit|
+end fork
+|UI|
+/'include usecase lernen'/
+:Lernen; 
+if(Lerneinheit abbrechen?) then([Einheit fertig])
+:Lerneinheit abschließen;
+else ([Abbrechen])
+label abbruch
+endif
+/'als usecase hinzufügen Wenn durchgefallen kein fortschritt'/
+'goto abbruch
+|CourseTestGenerator|
+:Lerneinheit prüfen;
+|UI|
+:Prüfung absolvieren;
+|TakeCourseUnit|
+if(Bestanden?) then([ja])
+:Fortschritt speichern;
+else([nein])
+endif
+:Zeiterfassung stoppen;
+|UI|
+repeat while (weiter Lernen?) is ([weitere Lerneinheiten machen]) not ([fertig für heute])
+:Lerntag beenden;
+|TakeCourseUnit|
+:Lernplan generieren/automatisch anpassen;
+:Lernfortschritt evaluieren;
+|UI|
+stop
+
+
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml LoadUnitsForDay()
+activate Facade
+Facade -> TakeCourseUnits: loadUnitsForDay(date)
+activate TakeCourseUnits
+TakeCourseUnits -> LernPlan: getUnitList()
+activate LernPlan
+LernPlan --> TakeCourseUnits: Unit[]
+deactivate LernPlan
+TakeCourseUnits ->TakeCourseUnits: filterBy(date, Unit[])
+activate TakeCourseUnits
+TakeCourseUnits -->TakeCourseUnits: Unit[]
+deactivate TakeCourseUnits
+
+Facade <-- TakeCourseUnits: Unit[]
+deactivate TakeCourseUnits
+@enduml
